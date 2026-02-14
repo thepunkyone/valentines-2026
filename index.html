@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sveiciens Valentīna dienā!</title>
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(#33c0e8, #a3bfce);
+            box-sizing: border-box;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            text-align: center;
+        }
+        
+        main {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-bottom: 80px;
+            overflow: hidden;
+        }
+        
+        h1 {
+            font-size: 36px;
+            color: #540060;
+            margin-bottom: 40px;
+        }
+        
+        .heartWrapper {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            background: transparent;
+            padding: 0;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .heart {
+            width: 150px;
+            animation: heartBeat 0.5s infinite alternate;
+            overflow: hidden;
+            scale: 1;
+            pointer-events: none;
+            touch-action: none;
+        }
+        
+        .heartWrapper:hover .heart {
+            scale: 1.8;
+        }
+        
+        @keyframes heartBeat {
+            to {
+                scale: 1.2;
+            }
+        }
+        
+        
+        .particle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            font-size: 40px;
+            animation: flyOut 1s forwards, fade 1.5s forwards;
+        }
+        
+        @keyframes flyOut {
+            from {
+                transform: translate(-50%, -50%);
+            }
+        }
+        
+        @keyframes fade {
+            0% {
+                opacity: 1;
+            }
+            
+            50% {
+                opacity: 1;
+            }
+            
+            100% {
+                opacity: 0;
+            }
+        }
+        
+       
+        /* Animate the gradient colors */
+        .stop-1 {
+            animation: colorPulse 2s infinite alternate;
+        }
+        
+        .stop-2 {
+            animation: colorPulse 2s infinite alternate-reverse;
+        }
+        
+        .stop-3 {
+            animation: colorPulse 1s infinite alternate;
+        }
+        
+        @keyframes colorPulse {
+            0% { stop-color: #FF69B4; }
+            50% { stop-color: #ce0049; }
+            100% { stop-color: #fa95cc; }
+        }
+    </style>
+    
+    <script type="text/javascript">
+        const emojis = ['❤️', '💖', '💕', '💞', '💓', '💗', '💘', '💝', '💐', '🌸', '🌹', '🌺', '🌻', '🌼', '🌷'];
+        
+        const getRandomEmoji = () => {
+            return emojis[Math.floor(Math.random() * emojis.length)];
+        }
+        
+        const onHeartClick = () => {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.textContent = getRandomEmoji();
+            particle.style.transform = `translate(${(Math.random() * 100) - 60}vw, ${(Math.random() * 100) - 60}vh)`;
+            
+            const heartWrapper = document.querySelector('.heartWrapper');
+            heartWrapper.appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 1500);
+        }
+    </script>
+</head>
+<body>
+    <main>
+        <h1>Sveiciens Valentīna dienā!</h1>
+        
+        <button class="heartWrapper" onClick="onHeartClick()">
+            <svg class="heart" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="heartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" class="stop-1" stop-color="#FF69B4" />
+                        <stop offset="50%" class="stop-2" stop-color="#ce0049" />
+                        <stop offset="100%" class="stop-3" stop-color="#fa95cc" />
+                    </linearGradient>
+                </defs>
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="url(#heartGradient)" />
+            </svg>
+        </button>
+    </main>
+</body>
+</html>
